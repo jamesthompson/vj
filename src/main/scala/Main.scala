@@ -21,6 +21,7 @@ case class History(filed: Option[DateTime],
   def filedToAppr = timeDiff(filed, appr)
   def bioToAppr = timeDiff(bio, appr)
   def apprToRec = timeDiff(appr, rec)
+  def noaToAppr = timeDiff(noa, appr)
 
 }
 
@@ -46,15 +47,17 @@ object Main extends App {
     trs.map(t => getHistory(t.select("td").asScala.toList.drop(3))).flatMap(h => h)
   }
 
-  val histories = (1 to 50).flatMap(getPageHistories)
+  val histories = (1 to 100).flatMap(getPageHistories)
 
-  val ftoa = histories.map(_.filedToAppr).flatMap(f => f).mkString("\n")
-  val btoa = histories.map(_.bioToAppr).flatMap(f => f).mkString("\n")
-  val ator = histories.map(_.apprToRec).flatMap(f => f).mkString("\n")
+  val ftoa = histories.map(_.filedToAppr).flatMap(f => f).sorted.mkString("\n")
+  val btoa = histories.map(_.bioToAppr).flatMap(f => f).sorted.mkString("\n")
+  val ator = histories.map(_.apprToRec).flatMap(f => f).sorted.mkString("\n")
+  val ntoa = histories.map(_.noaToAppr).flatMap(f => f).sorted.mkString("\n")
 
   printToFile(ftoa, "filedToApproval.txt")
   printToFile(btoa, "biometricsToApproval.txt")
   printToFile(ator, "approvalToCard.txt")
+  printToFile(ntoa, "noaToApproval.txt")
 
   println(s"Data taken from present day to ${histories.last.filed.getOrElse("invalid last day").toString}")
 
