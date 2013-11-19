@@ -46,6 +46,6 @@ object Main extends App {
   println(s"Data taken from present day to ${histories.last.filed.getOrElse("invalid last day").toString}")
 
   def printToFile(c: String, l: String) =
-    Some(new java.io.PrintWriter(s"/Users/James/Desktop/vjdata/$l")).foreach{f => try{f.write(c)} finally{f.close}}
+    Some(new java.io.PrintWriter(s"./$l")).foreach{f => try{f.write(c)} finally{f.close}}
 
 }
