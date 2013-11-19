@@ -26,7 +26,8 @@ case class History(filed: Option[DateTime],
 
 object Main extends App {
 
-  implicit def mkdate(s: String): Option[DateTime] = try{ Some(new DateTime(s)) } catch { case _ => None }
+  implicit def mkdate(s: String): Option[DateTime] = 
+    try{ Some(new DateTime(s)) } catch { case _ => None }
   
   def getPageHistories(pageNum: Int): List[History] = {
 
@@ -35,7 +36,9 @@ object Main extends App {
       case _ => None
     }
 
-    val urlString = s"http://www.visajourney.com/timeline/eadlist.php?cfl=0&op1=&op2=&op3=&op4=$pageNum&op5=4,7,11,12&op6="
+    val urlString = 
+      s"http://www.visajourney.com/timeline/eadlist.php?cfl=0&op1=&op2=&op3=&op4=$pageNum&op5=4,7,11,12&op6="
+    
     val doc = Jsoup.connect(urlString).get
     val table = doc.select("table[class*=pme-main]")
     val trs = table.select("tr").asScala.toList.tail
