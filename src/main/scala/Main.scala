@@ -46,7 +46,7 @@ object Main extends App {
       ).flatMap(h => h)
   }
 
-  val histories = (1 to 50).flatMap(getPageHistories)
+  val histories = (1 to 10).flatMap(getPageHistories)
   printToFile(histories.map(_.filedToAppr).flatMap(f => f).mkString("\n"), "filedToApproval.txt")
   printToFile(histories.map(_.bioToAppr).flatMap(f => f).mkString("\n"), "biometricsToApproval.txt")
   printToFile(histories.map(_.apprToRec).flatMap(f => f).mkString("\n"), "approvalToCard.txt")
