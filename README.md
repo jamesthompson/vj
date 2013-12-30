@@ -4,7 +4,7 @@
 
 This is a little program which goes to the visajourney.com website and extracts relevant timeline data for EAD applicants.
 
-It runs and takes 50 pages of previous timelines' data and outputs three files. Normally this equates to about 6 months of recent data. Three text files will be output to the VJ directory (from which it's being run).
+It runs and takes 10 pages of previous timelines' data and outputs three files. Normally this equates to about 6 months of recent data. Three text files will be output to the VJ directory (from which it's being run).
 
 ### Running the program
 
